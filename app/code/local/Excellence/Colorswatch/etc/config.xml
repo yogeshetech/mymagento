@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Excellence_Colorswatch>
-            <version>0.1.0</version>
+            <version>0.1.3</version>
         </Excellence_Colorswatch>
     </modules>
     <frontend>
@@ -88,6 +88,9 @@
                     <colorswatch>
                         <table>colorswatch</table>
                     </colorswatch>
+                    <design>
+                        <table>attribute_design_settings</table>
+                    </design>
                 </entities>
             </colorswatch_mysql4>
         </models>
@@ -139,6 +142,9 @@
                 <rewrite>
                     <catalog_product_attribute_edit_form>Excellence_Colorswatch_Block_Adminhtml_Form</catalog_product_attribute_edit_form>
                 </rewrite>
+                <rewrite>
+                    <catalog_product_edit_tabs>Excellence_Colorswatch_Block_Adminhtml_Tabs</catalog_product_edit_tabs>
+                </rewrite>
             </adminhtml>
             
         </blocks>
@@ -151,6 +157,9 @@
                     </excellence_colorswatch>
                 </observers>
             </catalog_entity_attribute_save_after>
+         
+            
+
         </events>
         <helpers>
             <catalog>
@@ -162,6 +171,8 @@
         <messages>
             <error>
                 <invalid_file>Invalid Image Format: Only jpg, png and gif Supported!</invalid_file>
+                <permissions>Error: Check permission for media/ folder</permissions>
+                <file>Unable to save image</file>
             </error>
         </messages>
     </global>

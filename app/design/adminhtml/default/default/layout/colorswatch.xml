@@ -1,37 +1,17 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
-    <default>
-    </default>
-    <colorswatch_index_index>
+    <colorswatch_adminhtml_colorswatch_index>
         <reference name="content">
-            <block type="colorswatch/colorswatch" name="colorswatch" template="colorswatch/colorswatch.phtml" />
+            <block type="colorswatch/adminhtml_colorswatch" name="colorswatch" />
         </reference>
-    </colorswatch_index_index>
-    <catalog_product_view translate="label">
-        <label>Catalog Product View (Any)</label>
-        <reference name="head">
-            <action method="addItem">
-                <type>skin_css</type>
-                <name>css/colorswatch.css</name>
-            </action>
-	    <action method="addItem" ifconfig="testsection/base/basejquery">
+    </colorswatch_adminhtml_colorswatch_index>
+    <adminhtml_catalog_product_attribute_edit>
+    <reference name="head">
+        <action method="addItem" >
                 <type>js</type>
                 <name>colorswatch/jquery-2.1.4.js</name>
             </action>
-	    <action method="addItem">
-                <type>js</type>
-                <name>colorswatch/colorswatch.js</name>
-            </action>
-        </reference>
-        <reference name="content">
-            <block type="catalog/product_view_type_configurable" name="js_data_block" template="colorswatch/jsdata.phtml"></block>
-        </reference>
-    </catalog_product_view>
-    <color_index_index>
-            <block type="color/color" name="color">
-                <action method="setTemplate">
-                    <template>colorswatch/colorswatch.phtml</template>
-                </action>
-            </block>
-    </color_index_index>
-</layout> 
+	    
+    </reference>
+    </adminhtml_catalog_product_attribute_edit>
+</layout>

@@ -41,6 +41,8 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
         </h2>
         <?php if ($_options = $this->getOptionList()):?>
         <dl class="item-options">
+       
+            
             <?php foreach ($_options as $_option) : ?>
             <?php $_formatedOptionValue = $this->getFormatedOptionValue($_option) ?>
             <dt><?php echo $this->escapeHtml($_option['label']) ?></dt>

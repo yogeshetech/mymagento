@@ -8,5 +8,6 @@ class Excellence_Colorswatch_Block_Adminhtml_Colorswatch extends Mage_Adminhtml_
     $this->_headerText = Mage::helper('colorswatch')->__('Item Manager');
     $this->_addButtonLabel = Mage::helper('colorswatch')->__('Add Item');
     parent::__construct();
+    $this->setTemplate('colorswatch/colorswatch.phtml');
   }
 }

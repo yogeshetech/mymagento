@@ -3,7 +3,7 @@
 class Excellence_Colorswatch_Helper_Data extends Mage_Catalog_Helper_Product_Configuration
 {
     public function getConfigurableOptions(Mage_Catalog_Model_Product_Configuration_Item_Interface $item)
-    {
+    {  
         $product = $item->getProduct();
         $typeId = $product->getTypeId();
         if ($typeId != Mage_Catalog_Model_Product_Type_Configurable::TYPE_CODE) {
@@ -17,9 +17,16 @@ class Excellence_Colorswatch_Helper_Data extends Mage_Catalog_Helper_Product_Con
 	foreach($superAttributes as $attribute=>$value){
                 $imageUrl= Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'colorswatch'.DS.$attribute.DS.$value.DS.'img';
 		$alt=$attributes[$index]['value'];
+		$imageExist=is_dir(Mage::getBaseDir().DS.'media'.DS.'colorswatch'.DS.$attribute.DS.$value); 
+		if($imageExist) {
                 $attributes[$index]['value']='<img style="width:25px; height:25px;" src="'.$imageUrl.'" alt="'.$alt.'">';
+		}
+		else {
+		$attributes[$index]['value']=$alt;
+		}
 		$index++;	
 	}
+	//print_r(array_merge($attributes, $this->getCustomOptions($item)));
         return array_merge($attributes, $this->getCustomOptions($item));
     }
     public function getFormattedOptionValue($optionValue, $params = null)
@@ -57,6 +64,7 @@ class Excellence_Colorswatch_Helper_Data extends Mage_Catalog_Helper_Product_Con
                     return $_default;
                 }
             }
+            
             return $_default;
         }
 
@@ -82,7 +90,7 @@ class Excellence_Colorswatch_Helper_Data extends Mage_Catalog_Helper_Product_Con
             $optionValue = nl2br($optionValue);
             $result['full_view'] = $optionValue;
         }
-
+      //  print_r($result);
         return $result;
     }
 }
