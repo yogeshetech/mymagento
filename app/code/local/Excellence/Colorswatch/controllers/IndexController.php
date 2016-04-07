@@ -4,10 +4,22 @@ class Excellence_Colorswatch_IndexController extends Mage_Core_Controller_Front_
     /*
      * isdir action called by colorswatch.js's hasImage, this function checks image directory exists or not 
      */
-    function isdirAction() {        
-        $dir = $this->getRequest()->getPost('dir');        
+    function isdirAction() {   
+		
+     
+        $dir = $this->getRequest()->getParam('dir');      
+        $options=$this->getRequest()->getParam('opts');
         $imageDirectory=Mage::getBaseDir().DS.'media'.DS.'colorswatch'.DS.$dir;
-        $directoryExist=array('yes'=>is_dir($imageDirectory));
+        foreach($options as $option){
+            if(is_dir($imageDirectory.DS.$option['id'])){
+                $directoryExist=array('yes'=>1);
+                break;
+            }
+            else{
+                $directoryExist=array('yes'=>0);
+            }
+        }
+        
         return $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($directoryExist));        
     }
     /*
@@ -20,10 +32,20 @@ class Excellence_Colorswatch_IndexController extends Mage_Core_Controller_Front_
         $optionId=$this->getRequest()->getPost('oId');        
         $imageDirectory= $path . DS.'media'.DS.'colorswatch'. DS . $attributeId . DS;
         $imageDirectory=$imageDirectory.DS.$optionId.DS.'img';
-        unlink($imageDirectory);
+        $isDeleted=array('yes'=>1);
+        if(!unlink($imageDirectory)){
+            $isDeleted['yes']=0;
+        }
         $optionDriectory=$path . DS.'media'.DS.'colorswatch'. DS . $attributeId . DS.$optionId;
         rmdir($optionDriectory);
         $attributeDirectory=$path . DS.'media'.DS.'colorswatch'. DS . $attributeId . DS;
         rmdir($attributeDirectory);
+        return $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($isDeleted));
     }
+    function insertAction(){
+        $model=Mage::getModel('colorswatch/design');
+        $model->setAttributeId(133);
+        $model->save();
+    }
+    
 }

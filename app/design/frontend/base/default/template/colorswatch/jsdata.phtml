@@ -1,9 +1,8 @@
-
 <!--
 * This phtml file is used to send php data to colorswatch.js 
 -->
 <script>
-	function getAllData(){
+        function getAllData(){
 		return '<?php echo $this->getJsonConfig() ?>';	
 	}    
         function getBaseDir(){
@@ -11,5 +10,11 @@
         }
         function getBaseUrl(){
             return '<?php echo $this->getBaseUrl(); ?>';
+        }
+        function getDesignData(){
+            var data='<?php echo json_encode(Mage::getModel('colorswatch/design')->getCollection()->getData()) ?>';
+           
+            return data;
+            	
         }
 </script>

@@ -1,4 +1,21 @@
-<h4><?php echo $this->__('Module List') ?></h4>
+<style>
+    .colors:hover{
+        /*box-shadow: 1px 3px 4px blue !important;*/
+	outline: 4px solid #FDBA3E;
+	cursor:grab;
+    }
+    .sizes:hover{
+        //box-shadow: 1px 3px 4px blue !important;
+	outline: 2px solid #FDBA3E;
+	cursor:grab;
+    }
+    .sizes{text-align: center}
+    .sizes span{
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
+
             <?php
                 
                 /*
@@ -61,5 +78,12 @@
                 $object->setTitle('This is a changed title');
                 $object->save();
 				*/
-echo 'adsfadsfadsfadsfadsfdsaf';
             ?> 
+<script>
+	function getAllData(){
+		return '<?php echo $this->getJsonConfig() ?>';	
+	}    
+        function getBaseDir(){
+            return '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>';
+        }
+</script>
